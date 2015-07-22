@@ -1,0 +1,12 @@
+Code Book
+This document describes the code inside run_analysis.R.
+
+The code has 2 main parts:
+- Part 1: reading and merging the data into one clean data.frame
+- Part 2: manipulating the tidy data to group it by first by Subject and then by Activity, and give the mean values for each variables
+
+Variables
+
+Data
+
+Transformation work
