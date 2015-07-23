@@ -9,31 +9,41 @@ The code has 2 main parts:
 
 Variables
 ============================================================================================================================
-features: stores the raw data from UCI HAR Dataset/activity_labels.txt
-features_labels: captures the "label" column from features
-activities: stores the raw data from UCI HAR Dataset/activity_labels.txt
-activity: captures the "label" column from activities
-subject_train: stores the raw data from UCI HAR Dataset/train/subject_train.txt
-X_train: stores the raw data from UCI HAR Dataset/train/X_train.txt
-X_train_mean: extracts only the measurements of mean
-X_train_std: extracts only the measurements of standard deviation
-y_train: stores the raw data from UCI HAR Dataset/train/y_train.txt
-n: integer storing the size of the data set for the loop purposes
-subject_test: stores the raw data from UCI HAR Dataset/test/subject_test.txt
-X_test: stores the raw data from UCI HAR Dataset/test/X_test.txt
-X_test_mean: extracts only the measurements of mean
-X_test_std: extracts only the measurements of standard deviation
-y_test: stores the raw data from UCI HAR Dataset/test/y_test.txt
-subject: merging the train and test subject data into one set using rbind
-X: merging the train and test X data into one set using rbind
-y: merging the train and test y data into one set using rbind
-df: building data frame with the tidy data: Subject, Activity and mean standard deviation measurements
-df_grouped: transforming the data frame to group the data by subject and by activity
-variables: vector of number from 3 to 68 that will be used to apply the mean function to all the measurements at once
-df_summarised: final tidy data, grouped by subject and activity and returning the mean of all the measurements for each
+- features: stores the raw data from UCI HAR Dataset/activity_labels.txt
+- features_labels: captures the "label" column from features
+- activities: stores the raw data from UCI HAR Dataset/activity_labels.txt
+- activity: captures the "label" column from activities
+- subject_train: stores the raw data from UCI HAR Dataset/train/subject_train.txt
+- X_train: stores the raw data from UCI HAR Dataset/train/X_train.txt
+- X_train_mean: extracts only the measurements of mean
+- X_train_std: extracts only the measurements of standard deviation
+- y_train: stores the raw data from UCI HAR Dataset/train/y_train.txt
+- n: integer storing the size of the data set for the loop purposes
+- subject_test: stores the raw data from UCI HAR Dataset/test/subject_test.txt
+- X_test: stores the raw data from UCI HAR Dataset/test/X_test.txt
+- X_test_mean: extracts only the measurements of mean
+- X_test_std: extracts only the measurements of standard deviation
+- y_test: stores the raw data from UCI HAR Dataset/test/y_test.txt
+- subject: merging the train and test subject data into one set using rbind
+- X: merging the train and test X data into one set using rbind
+- y: merging the train and test y data into one set using rbind
+- df: building data frame with the tidy data: Subject, Activity and mean standard deviation measurements
+- df_grouped: transforming the data frame to group the data by subject and by activity
+- variables: vector of number from 3 to 68 that will be used to apply the mean function to all the measurements at once
+- df_summarised: final tidy data, grouped by subject and activity and returning the mean of all the measurements for each
 
 Data
 ============================================================================================================================
-
+- features, activities, subject, X and y are loaded from the available files
+- 
 Transformation work
 ============================================================================================================================
+- Part 1:
+  - Mean and standard deviation measurement columns are extracted using grep to limit the data set to those columns
+  - Loop to replace activities id with actual meaningful lables
+  - Merging of datasets training and test into one single dataset
+- Part 2:
+  - Group the data by subject and activity using group_by from the dplyr package
+  - For each row, we calculate the mean of the grouped values, using summarise_each from the dplyr package
+
+The final tidy data is then written into a text file using write.table and passing row.name = FALSE
