@@ -54,9 +54,6 @@ run_analysis <- function() {
                 X <- rbind(X_train, X_test)
                 y <- rbind(y_train_activity, y_test_activity)
                 df <- data.frame(Subject = subject, Activity = y, X)
-                
-                ## store tidy data into CSV file
-                write.csv(df, "tidy_data.csv") 
         
         ## PART-2: create a second, independent tidy data set with the average of each variable 
         ##for each activity and each subject.
